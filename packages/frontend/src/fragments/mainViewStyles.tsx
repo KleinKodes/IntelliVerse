@@ -117,6 +117,7 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: "Arial",
     color: "#FFFFFF",
+    marginBottom: 10,
   },
 
   whiteIcon1: {
@@ -130,6 +131,7 @@ export const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     minHeight: 200,
+    maxHeight: 300,
   },
 
   rowFlex2: {
@@ -201,9 +203,32 @@ export const styles = StyleSheet.create({
     },
     shadowRadius: 0.5,
     shadowOpacity: 0.5,
-    padding: "10%",
+    paddingHorizontal: 12,
     fontSize: 24,
     fontFamily: 'Arial',
+    marginVertical:12
+    
+  },
+
+  inputBoxTall: {
+    height: "100%",
+    minHeight: 200,
+    maxHeight: 275,
+    width: "100%",
+    backgroundColor: "#EFF1F390",
+    borderRadius: 15,
+    alignContent: 'center',
+    justifyContent: 'center',
+    shadowOffset: {
+      width: 0.5,
+      height: 2
+    },
+    shadowRadius: 0.5,
+    shadowOpacity: 0.5,
+    paddingHorizontal: 12,
+    fontSize: 24,
+    fontFamily: 'Arial',
+    marginVertical:25
     
   },
 
@@ -222,13 +247,32 @@ export const styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOpacity: 0.5,
     width: "100%",
-    maxHeight: 300,
+    maxHeight: 120,
     flex:1,
     flexDirection: 'column',
     
 
     paddingHorizontal:"10%",
-    paddingBottom: "10%",
+
+  },inputBoxBoxTall: {
+    borderRadius: 15,
+    alignContent: 'center',
+    justifyContent: 'space-around',
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.5,
+    width: "100%",
+    maxHeight: 325,
+    flex:1,
+    flexDirection: 'column',
+    marginVertical:10,
+    
+
+    paddingHorizontal:"10%",
+
   },
   page: {
     width: "100%",
@@ -254,8 +298,8 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     flex: 1,
-    alignItems: 'flex-start',
-    alignContent: 'flex-start',
+    alignItems: 'center',
+    alignContent: 'center',
     flexDirection: 'column',
     justifyContent: 'flex-start'
   },
@@ -365,6 +409,7 @@ export const styles = StyleSheet.create({
     color: "#223843",
     alignSelf: 'center',
     textAlign: 'center',
+    
   },
 
   headerView: {

@@ -11,6 +11,9 @@ import { DescBox } from "./components/DescBox";
 import { MainPage } from "./pages/MainPage";
 import { EnterConversation } from "./pages/EnterConversation"
 
+import { ExpressionDecipherPage } from "./pages/ExpressionDecipherPage";
+
+
 
 const client = new ApolloClient({
     uri: 'http://localhost:8000/graphql',
@@ -73,13 +76,13 @@ const App = () => (
   function MyTabs() {
     return (
       <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Calendar" component={MainPage} options={{tabBarIcon: () => 
+        <Tab.Screen name="Past Scans" component={MainPage} options={{tabBarIcon: () => 
           (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
 
         <Tab.Screen name="Home" component={EnterConversation} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
-        <Tab.Screen name="Notifications" component={MainPage} options={{tabBarIcon: () => (<View>
+        <Tab.Screen name="Notifications" component={ExpressionDecipherPage} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="bell" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
       </Tab.Navigator>
