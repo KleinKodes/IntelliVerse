@@ -19,8 +19,6 @@ export const PastScansPage = () => {
     const sampleScan = new Scan("sample", "sample", "anthony hates me qqq", "this person is sad due to someone else's actions", new Date())
     const scanList = [sampleScan];
   return (
-
-
     <View style={styles.flexPage}>
 
       <Header title={"Seven5"} />

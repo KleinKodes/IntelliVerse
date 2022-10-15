@@ -477,40 +477,69 @@ export const styles = StyleSheet.create({
 
 
   headerContainer:{
-    maxHeight: 300,
+    maxHeight: 250,
     width: "100%",
   },
 
   enemyText:{
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: 10,
-    gap: 10,
-
-    width: 280,
-    height: 60,
+    width:"100%",
+    height:"100%",
+    margin: "2%",
+    justifyContent:"center",
+    alignItems:"flex-end",
+    paddingHorizontal:"10%",
 
     backgroundColor: "rgba(219, 211, 216, 0.6)",
     boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
     borderRadius: 10,
 
-    // /* Inside auto layout */
-
-    // flex: 'none',
-    order: 0,
-    flexGrow: 0,
-    zIndex: 0,
   },
-  playerText:{
+  playerTextContainer:{
     display: 'flex',
+    position:"relative",
+    right:0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    padding: 10,
-    gap: 10,
+    
 
-    width: 280,
-    height: 60,
+    
+    
+    margin: "2%",
+
+
+    width:"90%",
+    height: "100%",
+    maxHeight:40,
+  },
+  enemyTextContainer:{
+    position:"relative",
+    left:0,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+
+    margin: "2%",
+    
+
+    
+
+
+
+    width:"90%",
+    height: "100%",
+    maxHeight:40,
+  },
+  playerText:{
+    width:"100%",
+    height:"100%",
+    margin: "2%",
+    justifyContent:"center",
+    alignItems:"flex-start",
+    textAlign:'flex-end',
+    paddingHorizontal:"10%",
+
+
+   
 
     backgroundColor: "rgba(216, 180, 160, 0.6)",
     boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
@@ -519,10 +548,22 @@ export const styles = StyleSheet.create({
     // /* Inside auto layout */
 
     // flex: 'none',
-    order: 0,
-    flexGrow: 0,
-    zIndex: 0,
+   
   },
+
+  conversationView:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 10,
+    gap: 10,
+
+   
+
+    backgroundColor: 'rgba(239, 241, 243, 0.6)',
+    boxShadow: 'background: rgba(239, 241, 243, 0.6)',
+
+  }
 
   
 

@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { DescBox } from "./components/DescBox";
-import { MainPage } from "./pages/MainPage";
+import { FullMainPage } from "./pages/MainPage";
 import { EnterConversation } from "./pages/EnterConversation"
 
 import { ExpressionDecipherPage } from "./pages/ExpressionDecipherPage";
@@ -81,7 +81,7 @@ const App = () => (
         <Tab.Screen name="Past Scans" component={PastScansPage} options={{tabBarIcon: () => 
           (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
 
-        <Tab.Screen name="Home" component={EnterConversation} options={{tabBarIcon: () => (<View>
+        <Tab.Screen name="Home" component={FullMainPage} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
         <Tab.Screen name="Notifications" component={ConversationDecipherPage} options={{tabBarIcon: () => (<View>
