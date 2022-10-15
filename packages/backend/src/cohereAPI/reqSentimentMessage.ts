@@ -1,3 +1,4 @@
+
 import cohere from 'cohere-ai'
 import csvToJson from 'convert-csv-to-json';
 import { classifyRequest, classifyResponse, cohereResponse } from 'cohere-ai/dist/models';
@@ -13,7 +14,9 @@ function parse(fileURLToPath:string):{ text: string; label: string; }[] | { text
  
 }
 
-export async function reqSentiment(input:string): Promise<cohereResponse<classifyResponse>>{
+
+
+export async function reqSentimentMessage(input:string): Promise<cohereResponse<classifyResponse>>{
     const examples = parse("data.csv")
    
     console.log(JSON.stringify(examples[0]))
@@ -25,7 +28,3 @@ export async function reqSentiment(input:string): Promise<cohereResponse<classif
       console.log(JSON.stringify(response))
       return response
 }
-
-reqSentiment("this movie was great")
-
-
