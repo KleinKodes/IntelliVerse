@@ -6,14 +6,18 @@ import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
 
 export const MainPage = () => {
+ const submit = () =>{
+      console.log("temp")
+    }
   return (
 
+    
 
     <View style={styles.flexPage}>
 
       <Header title={"Seven"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} />
-      <SingleInputForm prompt={"Enter an expression"} />
+      <SingleInputForm prompt={"Enter an expression"} submitFunc={submit} inputUpdateFunc={console.log}/>
     </View>
 
 
