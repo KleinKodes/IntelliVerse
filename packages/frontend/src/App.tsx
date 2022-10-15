@@ -87,7 +87,7 @@ const App = () => (
     return(
 
     
-   <View>
+   <View style={styles.flexPage}>
     <Text>Hello Anthony</Text>
    </View>
     )
