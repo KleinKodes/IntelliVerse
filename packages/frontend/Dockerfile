@@ -8,7 +8,7 @@ EXPOSE ${FRONTEND_PORT2}
 
 
 #RUN apt-get update && apt-get install android-sdk -y
-WORKDIR /tabs/packages/frontend
+WORKDIR /Seven/packages/frontend
 #ENV ANDROID_HOME = ${ANDROIDHOME}
 COPY package.json .
 
