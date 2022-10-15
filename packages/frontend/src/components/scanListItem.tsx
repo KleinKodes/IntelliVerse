@@ -1,36 +1,39 @@
-// import React from 'react';
-// import { Text, View, TouchableOpacity } from 'react-native';
-// import { styles } from "../fragments/mainViewStyles"
-// import { Scan } from './Scan';
+import React from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { styles } from "../fragments/mainViewStyles"
+import { Scan } from './Scan';
 
 
-// export const scanListItem = ({item}:{item:Scan}) => {
+export const ScanListItem = ({item}:{item:Scan}) => {
   
 
 
    
-//       console.log("Will soon say hey listen!");
-//       console.log(item.scanId);
+      console.log("Will soon say hey listen!");
+      console.log(item.scanId);
       
-//       return (
-//         <TouchableOpacity onPress={() => {}}>
-//           <View style={styles.flexPage}>
+      return (
+        <TouchableOpacity onPress={() => {}}>
+          <View style={styles.flexPage}>
   
         
-//           <View style={styles.folderListItem}>
-//             {item.iconName != "none" && <BorderIcon text={item.iconName}></BorderIcon>}
+          <View style={styles.listItemColumn}>
+           
+           {item.input.length < 20 && <Text style={styles.splitTextNormal}>Input: {item.input}</Text>}
+           
+           {item.input.length >= 20 && <Text style={styles.splitTextNormal}>Input: {item.input.slice(0, 15) + "..."}</Text>}
+           
+           {item.meaning.length < 20 && <Text style={styles.splitTextNormal}>Meaning: {item.meaning}</Text>}
+            
+            {item.meaning.length >= 20 && <Text style={styles.splitTextNormal}>Meaning: {item.meaning.slice(0, 15) + "..."}</Text>}
+         
+         
+          </View>
+          
+          </View>
+        </TouchableOpacity>
   
-  
-  
-//             {item.capacity == -1 && <Text style={styles.splitTextNormal}>{item.text}</Text>}
-//             {item.capacity != -1 && <Text style={styles.splitTextNormal}>{item.text}: {item.capacity}</Text>}
-  
-//           </View>
-//           <Text style={styles.splitTextNormal}>{item.getTags()}</Text>
-//           </View>
-//         </TouchableOpacity>
-  
-//       );
+      );
   
     
-// }
+}

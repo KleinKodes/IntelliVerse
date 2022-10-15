@@ -13,6 +13,7 @@ import { EnterConversation } from "./pages/EnterConversation"
 
 import { ExpressionDecipherPage } from "./pages/ExpressionDecipherPage";
 import { ConversationDecipherPage } from "./pages/ConversationDecipherPage";
+import { PastScansPage } from "./pages/PastScans";
 
 
 
@@ -77,7 +78,7 @@ const App = () => (
   function MyTabs() {
     return (
       <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Past Scans" component={MainPage} options={{tabBarIcon: () => 
+        <Tab.Screen name="Past Scans" component={PastScansPage} options={{tabBarIcon: () => 
           (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
 
         <Tab.Screen name="Home" component={EnterConversation} options={{tabBarIcon: () => (<View>

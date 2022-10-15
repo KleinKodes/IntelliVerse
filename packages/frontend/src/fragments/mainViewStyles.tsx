@@ -130,8 +130,8 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     height: "100%",
     width: "100%",
-    minHeight: 200,
-    maxHeight: 300,
+    minHeight: 160,
+    maxHeight: 200,
   },
 
   rowFlex2: {
@@ -324,6 +324,19 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  listColumn: {
+    marginTop: "7%",
+   
+    
+    paddingHorizontal:"4%",
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+
   folderListItem: {
     height: "10%",
     minHeight: 100,
@@ -335,6 +348,31 @@ export const styles = StyleSheet.create({
 
     flex: 1,
     flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: "4%",
+    padding: "4%",
+
+    alignContent: "center",
+    alignItems: "center",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.5
+  },
+
+  listItemColumn: {
+    height:"10%",
+    minHeight: 100,
+    maxHeight: 110,
+    width: "100%",
+
+    backgroundColor: "#FFFFFFCC",
+    borderRadius: 10,
+
+    flex: 1,
+    flexDirection: "column",
     justifyContent: "space-evenly",
     marginTop: "4%",
     padding: "4%",
@@ -485,6 +523,8 @@ export const styles = StyleSheet.create({
     flexGrow: 0,
     zIndex: 0,
   },
+
+  
 
 
 });

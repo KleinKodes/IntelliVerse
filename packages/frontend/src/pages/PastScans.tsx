@@ -5,6 +5,7 @@ import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
 import { Scan } from "../components/Scan";
+import { ScanListItem } from "../components/scanListItem";
 
 export const PastScansPage = () => {
   //INSERT DB QUERY TO LOAD PAST SCANS FROM DATABASE
@@ -22,11 +23,12 @@ export const PastScansPage = () => {
 
     <View style={styles.flexPage}>
 
-      <Header title={"Seven"} />
-      <SafeAreaView>
+      <Header title={"Seven5"} />
+      <SafeAreaView style={styles.listColumn}>
           <FlatList
+          style={styles.maxWidthContainer}
             data={scanList}
-            renderItem={({ item }) => (<View/>)}
+            renderItem={({ item }) => (<ScanListItem item={item}/>)}
             keyExtractor={item => item.scanId}>
           </FlatList>
         </SafeAreaView>
