@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: "40%",
     margin: "8%",
+    maxHeight: 150,
 
 
     shadowOffset: {
@@ -35,9 +36,11 @@ export const styles = StyleSheet.create({
 
   myHeaderText: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 48,
     fontFamily: "Arial",
     width: "66.67%",
+    color: "#D77A61",
+    textAlign: 'center'
   },
 
   myNormalText: {
@@ -156,7 +159,7 @@ export const styles = StyleSheet.create({
     minHeight: 30,
     maxHeight: 80,
     width: "100%",
-    backgroundColor: "#FFFFFF90",
+    backgroundColor: "#EFF1F390",
     borderRadius: 15,
     alignContent: 'center',
     justifyContent: 'center',
@@ -166,6 +169,10 @@ export const styles = StyleSheet.create({
     },
     shadowRadius: 0.5,
     shadowOpacity: 0.5,
+    padding: "10%",
+    fontSize: 24,
+    fontFamily: 'Arial',
+    
   },
 
   marginContainer: {
@@ -175,13 +182,21 @@ export const styles = StyleSheet.create({
   inputBoxBox: {
     borderRadius: 15,
     alignContent: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     shadowOffset: {
       width: 3,
       height: 3
     },
     shadowRadius: 3,
     shadowOpacity: 0.5,
+    width: "100%",
+    maxHeight: 300,
+    flex:1,
+    flexDirection: 'column',
+    
+
+    paddingHorizontal:"10%",
+    paddingBottom: "10%",
   },
   page: {
     width: "100%",
@@ -309,5 +324,42 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 24,
     fontFamily: "Arial"
-  }
+  },
+
+  boxText: {
+    fontWeight: "normal",
+    fontSize: 18,
+    fontFamily: "Arial",
+    color: "#223843",
+    alignSelf: 'center',
+    textAlign: 'center',
+  },
+
+  headerView: {
+    minHeight: "30%",
+    maxHeight: 300,
+    width:"100%",
+    flex: 1,
+    zIndex: 1,
+
+    marginTop:"20%",
+
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+   
+    
+  },
+
+  headerContainer:{
+    maxHeight: 300,
+    width: "100%",
+  },
+
+
 });
