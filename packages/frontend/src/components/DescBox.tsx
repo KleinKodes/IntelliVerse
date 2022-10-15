@@ -5,12 +5,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { styles } from '../fragments/mainViewStyles';
 
 
-
-
-
-
-
-
 export const DescBox = ({text1} : {text1: string}) => {
   return (
     <View style={styles.rcorners1}>
