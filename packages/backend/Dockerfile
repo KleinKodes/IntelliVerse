@@ -9,8 +9,7 @@ COPY package.json /Seven/packages/backend
 RUN ls
 RUN cd /Seven/packages/backend
 
-#RUN npm install && \
-# npm run build
+
 
 EXPOSE ${BACKEND_PORT}
 
