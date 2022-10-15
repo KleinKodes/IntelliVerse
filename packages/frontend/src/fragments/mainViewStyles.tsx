@@ -380,8 +380,12 @@ export const styles = StyleSheet.create({
   },
 
   maxContainer: {
-    height: "200%",
+    height: "100%",
     width: "100%"
+  },
+
+  maxWidthContainer:{
+    width: "100%",
   },
 
   pleaseStaySmall:{

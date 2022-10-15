@@ -12,6 +12,7 @@ import { MainPage } from "./pages/MainPage";
 import { EnterConversation } from "./pages/EnterConversation"
 
 import { ExpressionDecipherPage } from "./pages/ExpressionDecipherPage";
+import { ConversationDecipherPage } from "./pages/ConversationDecipherPage";
 
 
 
@@ -82,7 +83,7 @@ const App = () => (
         <Tab.Screen name="Home" component={EnterConversation} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
-        <Tab.Screen name="Notifications" component={ExpressionDecipherPage} options={{tabBarIcon: () => (<View>
+        <Tab.Screen name="Notifications" component={ConversationDecipherPage} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="bell" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
       </Tab.Navigator>
