@@ -4,17 +4,20 @@ import { ApolloClient, InMemoryCache, ApolloProvider, gql, useMutation } from '@
 import { LinearGradient } from 'expo-linear-gradient';
 import { registerRootComponent } from 'expo';
 import { styles } from "./fragments/mainViewStyles";
-import { NavigationContainer } from '@react-navigation/native';
+import { createNavigationContainerRef, NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {test} from './pages/test';
+import home from './pages/home';
 
 
-const client = new ApolloClient({
-    uri: 'http://localhost:8000/graphql',
-    name: 'test',
-    cache: new InMemoryCache(),
-    version: '0'
-});
+// const client = new ApolloClient({
+//     uri: 'http://localhost:8000/graphql',
+//     name: 'test',
+//     cache: new InMemoryCache(),
+//     version: '0'
+// });
 
   const myTheme = {
     dark: false,
@@ -29,70 +32,67 @@ const client = new ApolloClient({
     },
   };
 
-  export const BackButton=({backFunction, argument}: {backFunction: Function, argument: any}) => <TouchableOpacity style={styles.headerIcon} onPress={() => backFunction(argument)}>
-<MaterialCommunityIcons name="arrow-left" size={24} />
-</TouchableOpacity>;
+  const Stack = createNativeStackNavigator();
+  const App = () => (
+    // <ApolloProvider client={client}>
+       <NavigationContainer>
+        <Stack.Screen
+          name="Home"
+          component={home}
+        />
+        <Stack.Screen
+          name="test"
+          component={test}
+        />
+       </NavigationContainer>   
+      
+   );
+ 
+ 
+   const Tab = createBottomTabNavigator();
 
-  export const MyHeader = ({title, backFunction}, {title:string, backFunction:Function}) => {
+//   export const BackButton=({backFunction, argument}: {backFunction: Function, argument: any}) => <TouchableOpacity style={styles.headerIcon} onPress={() => backFunction(argument)}>
+// <MaterialCommunityIcons name="arrow-left" size={24} />
+// </TouchableOpacity>;
 
-    return (
-      <View style={styles.myHeader}>
+//   export const MyHeader = ({title, backFunction}, {title:string, backFunction:Function}) => {
+
+//     return (
+//       <View style={styles.myHeader}>
   
-        <View style={styles.rowFlex2}>
+//         <View style={styles.rowFlex2}>
   
-          <BackButton backFunction={backFunction.myFunction} argument={backFunction.argument}/>
+//           <BackButton backFunction={backFunction.myFunction} argument={backFunction.argument}/>
   
-          <Text style={styles.myHeaderText}>{title}</Text>
+//           <Text style={styles.myHeaderText}>{title}</Text>
   
-        </View>
+//         </View>
   
-      </View>
-    );
-  };
+//       </View>
+//     );
+//   };
 
   
 
 
 
 
-const App = () => (
-    <ApolloProvider client={client}>
-      <NavigationContainer theme={myTheme}>
-        <MyTabs/>
-      </NavigationContainer>
 
-    </ApolloProvider>
-  );
+  // function MyTabs() {
+  //   return (
+  //     <Tab.Navigator screenOptions={{headerShown: false}}>
+  //       <Tab.Screen name="Calendar" component={SampleComponent} options={{tabBarIcon: () => 
+  //         (<View><MaterialCommunityIcons name="calendar" size={24} color={"#E6E6E6B0"}/></View>)}}/>
 
-
-  const Tab = createBottomTabNavigator();
-
-  function MyTabs() {
-    return (
-      <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Calendar" component={sampleComponent} options={{tabBarIcon: () => 
-          (<View><MaterialCommunityIcons name="calendar" size={24} color={"#E6E6E6B0"}/></View>)}}/>
-
-        <Tab.Screen name="Home" component={sampleComponent} options={{tabBarIcon: () => (<View>
-          <MaterialCommunityIcons name="home" size={24} color={"#E6E6E6B0"}/>
-        </View>)}}/>
-        <Tab.Screen name="Notifications" component={sampleComponent} options={{tabBarIcon: () => (<View>
-          <MaterialCommunityIcons name="bell" size={24} color={"#E6E6E6B0"}/>
-        </View>)}}/>
-      </Tab.Navigator>
-    );
-  }
-
-  const sampleComponent = () => {
-    return(
-
-    
-   <View style={styles.flexPage}>
-    <Text>Hello Anthony</Text>
-   </View>
-    )
-  };
-
+  //       <Tab.Screen name="Home" component={SampleComponent} options={{tabBarIcon: () => (<View>
+  //         <MaterialCommunityIcons name="home" size={24} color={"#E6E6E6B0"}/>
+  //       </View>)}}/>
+  //       <Tab.Screen name="Notifications" component={SampleComponent} options={{tabBarIcon: () => (<View>
+  //         <MaterialCommunityIcons name="bell" size={24} color={"#E6E6E6B0"}/>
+  //       </View>)}}/>
+  //     </Tab.Navigator>
+  //   );
+  // }
 
 
 
