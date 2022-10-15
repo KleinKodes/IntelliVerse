@@ -7,6 +7,8 @@ import { styles } from "./fragments/mainViewStyles";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { DescBox } from "./components/DescBox";
+import { MainPage } from "./pages/MainPage";
 
 
 const client = new ApolloClient({
@@ -20,11 +22,11 @@ const client = new ApolloClient({
     dark: false,
     colors: {
       primary: '#E6E6E6B0',
-      background: '#373737',
+      background: '#223843',
 
       card: '#373737',
       text: '#E6E6E6B0',
-      border: '#373737',
+      border: '#EFF1F3',
       notification: 'rgb(255, 69, 58)',
     },
   };
@@ -70,34 +72,17 @@ const App = () => (
   function MyTabs() {
     return (
       <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Calendar" component={sampleComponent} options={{tabBarIcon: () => 
-          (<View><MaterialCommunityIcons name="calendar" size={24} color={"#E6E6E6B0"}/></View>)}}/>
+        <Tab.Screen name="Calendar" component={MainPage} options={{tabBarIcon: () => 
+          (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
 
-        <Tab.Screen name="Home" component={sampleComponent} options={{tabBarIcon: () => (<View>
-          <MaterialCommunityIcons name="home" size={24} color={"#E6E6E6B0"}/>
+        <Tab.Screen name="Home" component={MainPage} options={{tabBarIcon: () => (<View>
+          <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
-        <Tab.Screen name="Notifications" component={sampleComponent} options={{tabBarIcon: () => (<View>
-          <MaterialCommunityIcons name="bell" size={24} color={"#E6E6E6B0"}/>
+        <Tab.Screen name="Notifications" component={MainPage} options={{tabBarIcon: () => (<View>
+          <MaterialCommunityIcons name="bell" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
       </Tab.Navigator>
     );
   }
-
-  const sampleComponent = () => {
-    return(
-
-    
-   <View style={styles.flexPage}>
-    <Text>Hello Anthony</Text>
-   </View>
-    )
-  };
-
-
-
-
-
-
-
 
 export default registerRootComponent(App)
