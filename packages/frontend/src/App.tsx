@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { DescBox } from "./components/DescBox";
 import { MainPage } from "./pages/MainPage";
+import { EnterConversation } from "./pages/EnterConversation"
 
 
 const client = new ApolloClient({
@@ -75,7 +76,7 @@ const App = () => (
         <Tab.Screen name="Calendar" component={MainPage} options={{tabBarIcon: () => 
           (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
 
-        <Tab.Screen name="Home" component={MainPage} options={{tabBarIcon: () => (<View>
+        <Tab.Screen name="Home" component={EnterConversation} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
         <Tab.Screen name="Notifications" component={MainPage} options={{tabBarIcon: () => (<View>

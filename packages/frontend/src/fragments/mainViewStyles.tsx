@@ -42,6 +42,38 @@ export const styles = StyleSheet.create({
     color: "#D77A61",
     textAlign: 'center'
   },
+  myHeaderTextH2: {
+    fontWeight: "bold",
+    fontSize: 43,
+    fontFamily: "Arial",
+    width: "66.67%",
+    color: "#D77A61",
+    textAlign: 'center'
+  },
+  myHeaderTextH3: {
+    fontWeight: "bold",
+    fontSize: 38,
+    fontFamily: "Arial",
+    width: "66.67%",
+    color: "#D77A61",
+    textAlign: 'center'
+  },
+  myHeaderTextH4: {
+    fontWeight: "bold",
+    fontSize: 28,
+    fontFamily: "Arial",
+    width: "66.67%",
+    color: "#D77A61",
+    textAlign: 'center'
+  },
+  myHeaderTextH5: {
+    fontWeight: "bold",
+    fontSize: 23,
+    fontFamily: "Arial",
+    width: "66.67%",
+    color: "#D77A61",
+    textAlign: 'center'
+  },
 
   myNormalText: {
     fontWeight: "normal",
@@ -356,9 +388,53 @@ export const styles = StyleSheet.create({
     
   },
 
+
   headerContainer:{
     maxHeight: 300,
     width: "100%",
+  },
+
+  enemyText:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 10,
+    gap: 10,
+
+    width: 280,
+    height: 60,
+
+    backgroundColor: "rgba(219, 211, 216, 0.6)",
+    boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
+    borderRadius: 10,
+
+    // /* Inside auto layout */
+
+    // flex: 'none',
+    order: 0,
+    flexGrow: 0,
+    zIndex: 0,
+  },
+  playerText:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    padding: 10,
+    gap: 10,
+
+    width: 280,
+    height: 60,
+
+    backgroundColor: "rgba(216, 180, 160, 0.6)",
+    boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
+    borderRadius: 10,
+
+    // /* Inside auto layout */
+
+    // flex: 'none',
+    order: 0,
+    flexGrow: 0,
+    zIndex: 0,
   },
 
 

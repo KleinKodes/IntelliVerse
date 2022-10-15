@@ -11,9 +11,11 @@ export const MainPage = () => {
 
     <View style={styles.flexPage}>
 
-      <Header title={"Seven"} />
+      <Header title={"Seven"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} />
       <SingleInputForm prompt={"Enter an expression"} />
     </View>
+
+
   );
 };
