@@ -9,6 +9,7 @@ import { EnterConversation } from "./EnterConversation";
 import * as ImagePicker from 'expo-image-picker';
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { ExpressionDecipherPage } from "./ExpressionDecipherPage";
+import fs from 'fs';
 
 
 
@@ -22,7 +23,14 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
   const [singleInput, setSingleInput] = useState("");
 
 
+  function get_png_string(directory):String{
 
+
+    // writing to a sub-directory
+    // after creating a directory called 'photos'
+    var imageAsBase64 = fs.readFileSync(directory, 'base64');
+    return imageAsBase64
+}
     
   const submitSingle = ({singleInput}:{singleInput:string}) => {
 
@@ -51,6 +59,8 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
   //     }
   //     }
 
+  var imageString
+
   const pickImage = async () => {
     console.log("Penis");
     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -72,11 +82,14 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
       
       setImage(null);
     }
+    //@ts-ignore
+    imageString = get_png_string(result.uri);
 
   };
+
+
+
   
-
-
 
 
 
@@ -124,6 +137,5 @@ export const FullMainPage = ({navigation}) => {
 
 }
 
-export default MainPage
 
 
