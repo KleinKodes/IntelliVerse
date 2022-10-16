@@ -9,7 +9,9 @@ import { EnterConversation } from "./EnterConversation";
 import * as ImagePicker from 'expo-image-picker';
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { ExpressionDecipherPage } from "./ExpressionDecipherPage";
-import fs from 'fs';
+import fs from 'react-native-fs';
+import ImgToBase64 from 'react-native-image-base64';
+import PhotoDecipherPage from "./PhotoDecipherPage";
 
 
 
@@ -17,19 +19,33 @@ import fs from 'fs';
 
 
 
-const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Function, boxFunction2: Function, submitFunc:Function}) => {
+
+
+const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunction1: Function, boxFunction2: Function, submitFunc:Function, navigation}) => {
 
   const [image, setImage] = useState(null);
   const [singleInput, setSingleInput] = useState("");
+  const [subImg, setSubImg] = useState(false);
+  const [myUri, setMyUri] = useState()
+  const [myB64, setMyB64] = useState()
 
 
-  function get_png_string(directory):String{
+  async function get_png_string(directory):Promise<String>{
 
 
     // writing to a sub-directory
     // after creating a directory called 'photos'
-    var imageAsBase64 = fs.readFileSync(directory, 'base64');
-    return imageAsBase64
+
+    const strrr = ImgToBase64.getBase64String(directory)
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+  mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  base64: true,
+});
+  
+  
+    
+    return strrr;
 }
     
   const submitSingle = ({singleInput}:{singleInput:string}) => {
@@ -59,7 +75,7 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
   //     }
   //     }
 
-  var imageString
+
 
   const pickImage = async () => {
     console.log("Penis");
@@ -69,7 +85,12 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
       alert("You've refused to allow this appp to access your photos!");
       return;
     }
-    let result = await ImagePicker.launchImageLibraryAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      base64: true,
+    });
+    //@ts-ignore
+    setMyUri(result.uri)
 
     console.log(result);
    
@@ -77,19 +98,34 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Functi
     if (!result.cancelled) {
       //@ts-ignore
       Alert.alert(result.uri);
+      setSubImg(true);
+      //@ts-ignore
+      setMyB64(result.base64)
+      //@ts-ignore
+      console.log(result.base64)
+      
     }
     else{
       
       setImage(null);
     }
     //@ts-ignore
-    imageString = get_png_string(result.uri);
+    imageString = await get_png_string(result.uri);
+    //@ts-ignore
+    
 
   };
 
 
 
-  
+  if (subImg){
+    return(
+      <View style={styles.maxContainer}>
+        {/*@ts-ignore*/}
+          <PhotoDecipherPage baseSix4={myB64} uri={myUri} meaning={""} navigation={navigation} backFunction={() =>{setSubImg(false)}}/>
+      </View>
+    )
+  }
 
 
 
@@ -128,7 +164,7 @@ export const FullMainPage = ({navigation}) => {
   return(
     <ScrollView style={styles.maxContainer} keyboardDismissMode={'none'}>
 
-{contextFlag && <MainPage submitFunc={({inp}:{inp:string})=>{console.log("I JUST CAME TO SAY HELLO");console.log(inp);console.log("GOODBYE THEN");typeInput(inp);saySubmitted(true)}} boxFunction2={() => { contextSwitch(!contextFlag); } } boxFunction1={undefined}/>}
+{contextFlag && <MainPage navigation={navigation} submitFunc={({inp}:{inp:string})=>{console.log("I JUST CAME TO SAY HELLO");console.log(inp);console.log("GOODBYE THEN");typeInput(inp);saySubmitted(true)}} boxFunction2={() => { contextSwitch(!contextFlag); } } boxFunction1={undefined}/>}
   {!contextFlag && <EnterConversation navigation={navigation} backFunction={()=>{contextSwitch(!contextFlag)}}/>}
 
     </ScrollView>

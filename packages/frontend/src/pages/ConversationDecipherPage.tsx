@@ -6,8 +6,18 @@ import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
+import { gql, useQuery } from "@apollo/client";
+import CacheStore from 'react-native-cache-store';
+import { Scan } from "../components/Scan";
 
-export const ConversationDecipherPage = ({input, meaning, navigation, backFunction}:{input: string, meaning:string, navigation, backFunction:Function}) => {
+
+export const SINGLE_INPUT = gql`
+query putSingleInput($input: String!) {
+  reqExpressionSentiment(input: $input)
+}
+`;
+
+export const ConversationDecipherPage = ({input, meaning, navigation, backFunction,  pastFlag}:{input: string, meaning:string, navigation, backFunction:Function, pastFlag:Boolean}) => {
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('tabPress', (e) => {
           // Prevent default behavior
@@ -23,6 +33,38 @@ export const ConversationDecipherPage = ({input, meaning, navigation, backFuncti
       
         return unsubscribe;
       }, [navigation]);
+
+
+      if (!pastFlag){
+
+        const {loading, error, data } = useQuery(SINGLE_INPUT, {
+          variables: { input: input}})
+  
+          if (loading) return <Text>Loading...</Text>;
+          console.log(JSON.stringify(data))
+          //Alert.alert(data.reqExpressionSentiment);
+  
+          meaning = data.reqExpressionSentiment;
+  
+          console.log("TELL ME WHY");
+  
+          CacheStore.get('ScanList').then((value:Scan[]) => {
+  
+            console.log(JSON.stringify(value));
+  
+            console.log(":c:C:c");
+            if (value != undefined)
+            value[value.length] = new Scan("IDEK anymore", "not JP", input, data.reqExpressionSentiment, new Date(), true);
+            else {value = [ new Scan("IDEK anymore", "not JP", input, data.reqExpressionSentiment, new Date(), true)]}
+            
+            for (var i = 0; i<value.length;i++){
+              value[i].scanId=i+"7";
+            }
+            CacheStore.set('ScanList', value)
+          })
+  
+        }
+  
   return (
     <View style={styles.flexPage}>
     <Header title={"Seven3"} />

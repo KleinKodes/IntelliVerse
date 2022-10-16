@@ -13,4 +13,4 @@ RUN cd /Seven/packages/backend
 
 EXPOSE ${BACKEND_PORT}
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "startts"]

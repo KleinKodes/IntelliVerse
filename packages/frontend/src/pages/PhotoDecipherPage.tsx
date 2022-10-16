@@ -1,31 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, View, Text, Image } from 'react-native'
 import { Header } from 'react-native/Libraries/NewAppScreen'
 import { styles } from '../fragments/mainViewStyles'
-import fs from 'fs';
+import ImgToBase64 from 'react-native-image-base64';
 import { gql, useQuery } from "@apollo/client";
+import * as ImagePicker from 'expo-image-picker';
 
 export const MESSAGE_SENTIMENT = gql`
         query MessageSentiment($pngString: String) {
             reqMessageSentiment(pngString: $pngString)
         }
-        `
-export default function PhotoDecipherPage({uri, meaning, navigation, backFunction}) {
+        `;
+export default function PhotoDecipherPage({uri, meaning, navigation, backFunction, baseSix4}) {
+    const [meaning2, meaning2Set] = useState("");
+    const [pcStr, pcStrSet] = useState("temp");
 
-    function get_png_string(directory):String{
 
 
-        // writing to a sub-directory
-        // after creating a directory called 'photos'
-        var imageAsBase64 = fs.readFileSync(directory, 'base64');
-        return imageAsBase64
-    }
-    var picString = get_png_string(uri);
+    console.log(baseSix4);
+    console.log("poo");
+    
+    //get_png_string(uri).then((value:string)=>{pcStrSet(value)});
 
+
+   
     const {loading, error, data } = useQuery(MESSAGE_SENTIMENT, 
-        { variables: { input: picString }})
+            { variables: { input: baseSix4}})
+            if (loading){
+                return(<View><Text>Loading...</Text></View>)
+            }
+            console.log("ERROR: " + error.name + " " + error.message)
+            console.log(JSON.stringify(data))
+            meaning2Set(data.reqMessageSentiment)
+    
+    
 
-    meaning = data.reqMessageSentiment
+
+    
+  
+    
 
   return (
     <View style={styles.flexPage}>

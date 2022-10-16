@@ -10,6 +10,7 @@ import { DualButton } from '../components/DualButton'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { gql, useQuery } from '@apollo/client';
+import { ConversationDecipherPage } from './ConversationDecipherPage'
 
 //var count = 1;
 
@@ -17,6 +18,8 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
     const [mode, setMode] = useState(0);
     const [conversation, setConversation] = useState([]);
     const [userInput, setUserInput] = useState("");
+    const [submitted, submitFunc] = useState(false);
+    const [totalInput, setTotalInput] = useState("");
 
     const addText = ({message, person} : {message:string, person:number}) => {
         // setConversation(prev => [...prev, {message: {message}, person:{person}}]);
@@ -50,26 +53,32 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
         var out = "";
         var length = conversation.length;
         for(var i=0; i<length; i++) {
-            out += conversation[i].message
+            if(conversation[i].person != 1) out += " " + conversation[i].message
         }
         return out;
     }
 
-    const EXPRESSION_SENTIMENT = gql`
-        query Expression($input: String) {
-        reqExpressionSentiment(input: $input)
-        }
-        `
-        
 
+   
     const submitConversation = () =>{
-        const {loading, error, data } = useQuery(EXPRESSION_SENTIMENT, {
-            variables: { input: processConvo() }})
 
-            if (loading) return <Text>Loading...</Text>;
-            Alert.alert(data);
-            return data;
+        var maxText = processConvo()
+       
+        console.log("Shipping off \"" + maxText + "\" to backend");
+
+        setTotalInput(maxText);
+        submitFunc(true);
+            
+            
     }
+
+    if (submitted){return(
+
+        <View style={styles.maxContainer}>
+            <ConversationDecipherPage input={totalInput} meaning={""} navigation={navigation} backFunction={()=>{submitFunc(false)}} pastFlag={false}/>
+        </View>
+
+    )}
     
     return (
         <View style={styles.flexPage}>
@@ -88,8 +97,8 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
             
             
             <View style={{ width:"100%", height:"100%", flex:1,flexDirection:"column", justifyContent:"flex-start"}}>
-                <DualButton buttonFunctions={[() => {changeMode()}, ()=>{addText({message:userInput, person:mode})}]} titles={["Change Mode", "Ge Sentiment"]}></DualButton>
-                <SingleInputForm mode={mode} prompt={"Enter a text message..."} submitFunc={() =>{addText({message:userInput, person:mode})}} inputUpdateFunc={setUserInput}></SingleInputForm>
+                <DualButton buttonFunctions={[() => {changeMode()}, ()=>{addText({message:userInput, person:mode})}]} titles={["Change Mode", "Add Text"]}></DualButton>
+                <SingleInputForm mode={mode} prompt={"Enter a text message..."} submitFunc={() =>{submitConversation()}} inputUpdateFunc={setUserInput}></SingleInputForm>
 
             </View>
             

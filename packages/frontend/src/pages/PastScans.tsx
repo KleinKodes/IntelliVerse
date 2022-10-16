@@ -105,7 +105,7 @@ export const FullScanPage = ({navigation}) => {
 
              {selectedScan != null && selectedScan.scanId == "unset" && <PastScansPage pickFunction={({scan}:{scan:Scan}) => {console.log("I HATE REACT"); console.log(scan.scanId); scanSelector(scan)}}/>}
             { selectedScan != null && selectedScan.scanId != "unset" && selectedScan.convoBool && <ExpressionDecipherPage pastFlag={true} backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
-            { selectedScan != null && selectedScan.scanId != "unset" && !selectedScan.convoBool && <ConversationDecipherPage backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
+            { selectedScan != null && selectedScan.scanId != "unset" && !selectedScan.convoBool && <ConversationDecipherPage pastFlag={true} backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
         </View>
     )
 
