@@ -14,7 +14,6 @@ let apiKey = "Ucmx3VFMRXIuWQDt57MszbP4FNK3jGM26RqLUSWK"
 function parse_text(text:string){
     text = text.replace('iMessage','')
     text = text.replace(/[\r\n]/gm,' ')
-    
 
     return text
 }
@@ -47,14 +46,16 @@ export async function reqSentimentMessage(pngString:String):Promise<cohereRespon
     cohere.init(apiKey);
     encodePNG(pngString)
     //cohere stuff here
+
+    
     const input = await get_text()
     console.log(input)
+    //@ts-ignore
     const response = await cohere.classify({
-        preset:'No preset',
         model:  'c39b514c-c179-4542-8ab8-77e7c5331a05-ft',
-        inputs: ['ew']
+        inputs: [input]
       })
-      console.log(`The confidence levels of the labels are ${JSON.stringify(response.body.classifications)}`);
+      //console.log(`The confidence levels of the labels are ${JSON.stringify(response)}`);
     return response
 
 }

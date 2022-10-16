@@ -21,7 +21,7 @@ async function get_sentiment(pngString: string): Promise<String>{
     }
   
     const a = response.body.classifications[0].prediction
-     
+    console.log(a)
     return a
   }
 
