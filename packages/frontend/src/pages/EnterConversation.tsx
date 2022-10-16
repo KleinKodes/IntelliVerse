@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, View } from 'react-native'
+import { Alert, Button, View, Text } from 'react-native'
 import { ConversationView } from '../components/ConversationView'
 import { Header } from '../fragments/header'
 import { styles } from '../fragments/mainViewStyles'
@@ -9,6 +9,7 @@ import { FormButton } from '../components/formButton'
 import { DualButton } from '../components/DualButton'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { gql, useQuery } from '@apollo/client';
 
 //var count = 1;
 
@@ -43,7 +44,33 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
         return unsubscribe;
       }, [navigation]);
 
-    //if (count == 1) {console.log("HEY LISTEN!"); setConversation([{message: "penis penis penis penis!", person:0}, {message: "penis penis penis penis1", person:1}]); count++;} else {console.log("NVM DONE LISTENING")}
+
+    
+    const processConvo = () => {
+        var out = "";
+        var length = conversation.length;
+        for(var i=0; i<length; i++) {
+            out += conversation[i].message
+        }
+        return out;
+    }
+
+    const EXPRESSION_SENTIMENT = gql`
+        query Expression($input: String) {
+        reqExpressionSentiment(input: $input)
+        }
+        `
+        
+
+    const submitConversation = () =>{
+        const {loading, error, data } = useQuery(EXPRESSION_SENTIMENT, {
+            variables: { input: processConvo() }})
+
+            if (loading) return <Text>Loading...</Text>;
+            Alert.alert(data);
+            return data;
+    }
+    
     return (
         <View style={styles.flexPage}>
 
@@ -61,7 +88,7 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
             
             
             <View style={{ width:"100%", height:"100%", flex:1,flexDirection:"column", justifyContent:"flex-start"}}>
-                <DualButton buttonFunctions={[() => {changeMode()}, ()=>{addText({message:userInput, person:mode})}]} titles={["Change Mode", "Submit"]}></DualButton>
+                <DualButton buttonFunctions={[() => {changeMode()}, ()=>{addText({message:userInput, person:mode})}]} titles={["Change Mode", "Ge Sentiment"]}></DualButton>
                 <SingleInputForm mode={mode} prompt={"Enter a text message..."} submitFunc={() =>{addText({message:userInput, person:mode})}} inputUpdateFunc={setUserInput}></SingleInputForm>
 
             </View>
