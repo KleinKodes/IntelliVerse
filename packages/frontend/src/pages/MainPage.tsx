@@ -27,7 +27,7 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
   const [singleInput, setSingleInput] = useState("");
   const [subImg, setSubImg] = useState(false);
   const [myUri, setMyUri] = useState()
-  const [myB64, setMyB64] = useState()
+  const [myB64, setMyB64] = useState("")
 
 
     
@@ -75,12 +75,12 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
     //@ts-ignore
     setMyUri(result.uri)
 
-    console.log(result);
+    //console.log(result);
    
 
     if (!result.cancelled) {
       //@ts-ignore
-      Alert.alert(result.uri);
+      //Alert.alert(result.uri);
       setSubImg(true);
       //@ts-ignore
       setMyB64(result.base64)
@@ -119,7 +119,7 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
 
     <View style={[styles.flexPage, {justifyContent:"space-around"}]}>
 
-      <Header title={"Seven"}/>
+      <Header title={"IntelliVerse"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
       <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle({singleInput: singleInput})}} inputUpdateFunc={(text:string)=>{setSingleInput(text)}}/>
     </View>

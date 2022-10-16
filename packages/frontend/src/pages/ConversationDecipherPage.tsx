@@ -67,7 +67,7 @@ export const ConversationDecipherPage = ({input, meaning, navigation, backFuncti
   
   return (
     <View style={styles.flexPage}>
-    <Header title={"Seven3"} />
+    <Header title={"IntelliVerse"} />
     
         <ScrollView contentContainerStyle={{flexGrow:1}} style={ {width:"100%"}}>
             <View style={{flex:1, flexGrow:1}}>

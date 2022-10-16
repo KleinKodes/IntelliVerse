@@ -67,7 +67,7 @@ export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction
 
     <View style={styles.flexPage}>
 
-      <Header title={"Seven2"} />
+      <Header title={"IntelliVerse"} />
       <View style={styles.inputBoxBox}>
         <Text style={styles.whiteText2}>Input:</Text>
         <View style={styles.inputBox}>

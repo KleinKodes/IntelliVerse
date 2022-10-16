@@ -57,7 +57,7 @@ CacheStore.get('ScanList').then((value:Scan[])=>{
   return (
     <View style={styles.flexPage}>
 
-      <Header title={"Seven5"} />
+      <Header title={"History"} />
       <SafeAreaView style={styles.listColumn}>
           <FlatList
           style={styles.maxWidthContainer}
