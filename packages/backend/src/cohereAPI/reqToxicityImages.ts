@@ -45,7 +45,7 @@ async function encodePNG(pngString:String){
 }
 
 
-export async function reqSentimentMessage(pngString:String):Promise<cohereResponse<classifyResponse>>{
+export async function reqToxicityImages(pngString:String):Promise<cohereResponse<classifyResponse>>{
     cohere.init(apiKey);
     await encodePNG(pngString)
     
