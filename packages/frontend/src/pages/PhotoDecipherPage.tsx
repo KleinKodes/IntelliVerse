@@ -16,6 +16,23 @@ const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}: {
     const [pcStr, pcStrSet] = useState("temp");
 
 
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('tabPress', (e) => {
+          // Prevent default behavior
+          e.preventDefault();
+
+
+      
+          // Do something manually
+          // ...
+          backFunction();
+          console.log("WE GOTTA REVERT");
+        });
+      
+        return unsubscribe;
+      }, [navigation]);
+
+
 
     console.log(baseSix4);
     console.log("poo");
