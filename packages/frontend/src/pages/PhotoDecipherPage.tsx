@@ -42,7 +42,7 @@ const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}: {
 
   return (
     <View style={[styles.flexPage, {zIndex:2, backgroundColor:"223843"}]}>
-    <Header title={"Seven3"} />
+    <Header title={"IntelliVerse"} />
     
         <ScrollView contentContainerStyle={{flexGrow:1}} style={ {width:"100%"}}>
             <View style={{flex:1, flexGrow:1}}>
