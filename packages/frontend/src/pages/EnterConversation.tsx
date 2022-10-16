@@ -10,7 +10,7 @@ import { DualButton } from '../components/DualButton'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-var count = 1;
+//var count = 1;
 
 export const EnterConversation = ({backFunction, navigation}: {backFunction: Function, navigation}) => {
     const [mode, setMode] = useState(0);
@@ -43,7 +43,7 @@ export const EnterConversation = ({backFunction, navigation}: {backFunction: Fun
         return unsubscribe;
       }, [navigation]);
 
-    if (count == 1) {console.log("HEY LISTEN!"); setConversation([{message: "penis penis penis penis!", person:0}, {message: "penis penis penis penis1", person:1}]); count++;} else {console.log("NVM DONE LISTENING")}
+    //if (count == 1) {console.log("HEY LISTEN!"); setConversation([{message: "penis penis penis penis!", person:0}, {message: "penis penis penis penis1", person:1}]); count++;} else {console.log("NVM DONE LISTENING")}
     return (
         <View style={styles.flexPage}>
 

@@ -329,6 +329,7 @@ export const styles = StyleSheet.create({
    
     
     paddingHorizontal:"4%",
+    marginHorizontal:"4%",
     width: "100%",
     height: "100%",
     flex: 1,

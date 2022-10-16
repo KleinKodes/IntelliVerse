@@ -40,6 +40,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
    
 
     if (!result.cancelled) {
+      //@ts-ignore
       Alert.alert(result.uri);
     }
     else{
@@ -57,7 +58,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
     <View style={styles.flexPage}>
 
       <Header title={"Seven"}/>
-      <DoubleDescBox data={["Upload Text Messages", "sGive longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
+      <DoubleDescBox data={["Upload Text Messages", "Give conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
       <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{console.log("Piss")}} inputUpdateFunc={console.log}/>
     </View>
 

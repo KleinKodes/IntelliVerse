@@ -78,15 +78,13 @@ const App = () => (
   function MyTabs() {
     return (
       <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Past Scans" component={FullScanPage} options={{tabBarIcon: () => 
-          (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
-
         <Tab.Screen name="Home" component={FullMainPage} options={{tabBarIcon: () => (<View>
           <MaterialCommunityIcons name="home" size={24} color={"#EFF1F3"}/>
         </View>)}}/>
-        <Tab.Screen name="Notifications" component={ConversationDecipherPage} options={{tabBarIcon: () => (<View>
-          <MaterialCommunityIcons name="bell" size={24} color={"#EFF1F3"}/>
-        </View>)}}/>
+        <Tab.Screen name="Past Scans" component={FullScanPage} options={{tabBarIcon: () => 
+          (<View><MaterialCommunityIcons name="calendar" size={24} color={"#EFF1F3"}/></View>)}}/>
+
+        
       </Tab.Navigator>
     );
   }
