@@ -6,27 +6,32 @@ import getTextFromImage from "node-text-from-image";
 import Jimp from "jimp"
 
 
-let apiKey = "eECdZb5nD7QbiEdyTIFxI1fefn56IB7E2Fz8ItHH"
-cohere.init(apiKey);
+let apiKey = "Ucmx3VFMRXIuWQDt57MszbP4FNK3jGM26RqLUSWK"
 
 
 
 
-async function get_text():Promise<String>{
+function parse_text(text:string){
+    text = text.replace('iMessage','')
+    text = text.replace(/[\r\n]/gm,' ')
+    
+
+    return text
+}
+async function get_text():Promise<string>{
     const text = await getTextFromImage("./img.png").then(text => {
-        return text
+        return parse_text(text)
     }).catch(err => {
          return 'error'
     })
+
+   
     return text
 }
 
 
- async function encodePNG(pngString:String):Promise<String>{
-    // Some image data uri
-    
-    // Base64 string
-    // Convert base64 to buffer => <Buffer ff d8 ff db 00 43 00 ...
+function encodePNG(pngString:String){
+    //creates png
     const buffer = Buffer.from(pngString, "base64");
     Jimp.read(buffer, (err, res) => {
     if (err){
@@ -35,23 +40,22 @@ async function get_text():Promise<String>{
     res.quality(5).write("img.jpg");
     });
     console.log('success converting')
-    return get_text()
-    
 }
 
 
 export async function reqSentimentMessage(pngString:String):Promise<cohereResponse<classifyResponse>>{
-    const input = String(encodePNG(pngString))
-    console.log(input)
+    cohere.init(apiKey);
+    encodePNG(pngString)
     //cohere stuff here
-
+    const input = await get_text()
+    console.log(input)
     const response = await cohere.classify({
         preset:'No preset',
-        model: '18271883-c870-4293-a566-1b85505fe712-ft',
-        inputs: [input]
+        model:  'c39b514c-c179-4542-8ab8-77e7c5331a05-ft',
+        inputs: ['ew']
       })
       console.log(`The confidence levels of the labels are ${JSON.stringify(response.body.classifications)}`);
-      return response
+    return response
 
 }
 
