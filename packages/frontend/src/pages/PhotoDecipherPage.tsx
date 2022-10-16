@@ -11,7 +11,7 @@ export const MESSAGE_SENTIMENT = gql`
             reqMessageSentiment(pngString: $pngString)
         }
         `;
-export default function PhotoDecipherPage({uri, meaning, navigation, backFunction, baseSix4}) {
+const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}) =>{
     const [meaning2, meaning2Set] = useState("");
     const [pcStr, pcStrSet] = useState("temp");
 
@@ -71,3 +71,5 @@ export default function PhotoDecipherPage({uri, meaning, navigation, backFunctio
     </View>
   )
 }
+
+export default PhotoDecipherPage
