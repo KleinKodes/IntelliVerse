@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import { TextInput, View, Text, Button, StyleSheet, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql, useMutation } from '@apollo/client';
 import { LinearGradient } from 'expo-linear-gradient';
 import { registerRootComponent } from 'expo';
@@ -65,9 +65,12 @@ const client = new ApolloClient({
 
 const App = () => (
     <ApolloProvider client={client}>
+      <KeyboardAvoidingView style={styles.maxContainer}>
       <NavigationContainer theme={myTheme}>
         <MyTabs/>
       </NavigationContainer>
+      </KeyboardAvoidingView>
+     
 
     </ApolloProvider>
   );

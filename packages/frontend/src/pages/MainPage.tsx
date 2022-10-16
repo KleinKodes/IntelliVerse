@@ -71,7 +71,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
   return (
 
 
-    <View style={styles.flexPage}>
+    <View style={[styles.flexPage, {justifyContent:"space-around"}]}>
 
       <Header title={"Seven"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>

@@ -456,7 +456,7 @@ export const styles = StyleSheet.create({
   },
 
   headerView: {
-    minHeight: "30%",
+    height: "45%",
     maxHeight: 300,
     width:"100%",
     flex: 1,
@@ -478,6 +478,7 @@ export const styles = StyleSheet.create({
 
 
   headerContainer:{
+    height:"22%",
     maxHeight: 250,
     width: "100%",
   },

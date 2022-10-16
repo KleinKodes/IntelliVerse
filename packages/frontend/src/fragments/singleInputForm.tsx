@@ -9,7 +9,7 @@ export const SingleInputForm = ({prompt, submitFunc, inputUpdateFunc, mode} : {p
         var extra={backgroundColor:"#D8B4A0"};
     }else var extra={backgroundColor:"#DBD3D8"}
     return(
-        <View style={styles.flexPage}>
+        <View style={[styles.flexPage, {justifyContent:'center'}]}>
             <Text style={styles.whiteText2}>{prompt}</Text>
             <View style={styles.inputBoxBox}>
             
