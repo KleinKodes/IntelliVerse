@@ -8,11 +8,39 @@ import { Scan } from "../components/Scan";
 import { ScanListItem } from "../components/scanListItem";
 import { ExpressionDecipherPage } from "./ExpressionDecipherPage";
 import { ConversationDecipherPage } from "./ConversationDecipherPage";
+import CacheStore from 'react-native-cache-store';
 
 
 
+//var count = 0;
 
 export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
+  const sampleScan = new Scan("sample2", "sample", "anthony hates me qqq", "this person is sad due to someone else's actions", new Date(), true);
+  const [scanList2, setScanList] = useState([sampleScan]);
+
+  //CacheStore.remove('ScanList');
+
+
+CacheStore.get('ScanList').then((value:Scan[])=>{
+
+  console.log("The list of scans is:")
+  console.log(JSON.stringify(value));
+  if (value != scanList2){
+
+
+  setScanList(value);
+  
+
+  } 
+  
+}
+  
+
+)
+
+
+  
+  
 
 
     
@@ -22,8 +50,7 @@ export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
 
 
   //END INSERT
-  const sampleScan = new Scan("sample2", "sample", "anthony hates me qqq", "this person is sad due to someone else's actions", new Date(), true);
-  const scanList = [sampleScan];
+ 
   //SCANS SCHEMAS: 1 scanId, 1 userId: string, 1 input: string, 1 meaning: string, 1 scanDate: Date
 
     
@@ -34,8 +61,8 @@ export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
       <SafeAreaView style={styles.listColumn}>
           <FlatList
           style={styles.maxWidthContainer}
-            data={scanList}
-            initialNumToRender={1} 
+            data={scanList2}
+          
             renderItem={({ item }) => <ScanListItem touchFunction={()=>{console.log("ANTHONY QIN WAS NOT HERE"); console.log(item.scanId);console.log("GOODBYE ANATAWA");pickFunction({scan: item})}} item={item}/>}
             keyExtractor={item => item.scanId}>
           </FlatList>
@@ -77,7 +104,7 @@ export const FullScanPage = ({navigation}) => {
             
 
              {selectedScan != null && selectedScan.scanId == "unset" && <PastScansPage pickFunction={({scan}:{scan:Scan}) => {console.log("I HATE REACT"); console.log(scan.scanId); scanSelector(scan)}}/>}
-            { selectedScan != null && selectedScan.scanId != "unset" && selectedScan.convoBool && <ExpressionDecipherPage backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
+            { selectedScan != null && selectedScan.scanId != "unset" && selectedScan.convoBool && <ExpressionDecipherPage pastFlag={true} backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
             { selectedScan != null && selectedScan.scanId != "unset" && !selectedScan.convoBool && <ConversationDecipherPage backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
         </View>
     )

@@ -5,6 +5,8 @@ import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
 import { gql, useQuery } from "@apollo/client";
+import CacheStore from 'react-native-cache-store';
+import { Scan } from "../components/Scan";
 
 export const SINGLE_INPUT = gql`
 query putSingleInput($input: String!) {
@@ -37,8 +39,27 @@ export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction
 
         if (loading) return <Text>Loading...</Text>;
         console.log(JSON.stringify(data))
-        Alert.alert(data.reqExpressionSentiment);
+        //Alert.alert(data.reqExpressionSentiment);
+
         meaning = data.reqExpressionSentiment;
+
+        console.log("TELL ME WHY");
+
+        CacheStore.get('ScanList').then((value:Scan[]) => {
+
+          console.log(JSON.stringify(value));
+
+          console.log(":c:C:c");
+          if (value != undefined)
+          value[value.length] = new Scan("IDEK anymore", "not JP", input, data.reqExpressionSentiment, new Date(), false);
+          else {value = [ new Scan("IDEK anymore", "not JP", input, data.reqExpressionSentiment, new Date(), false)]}
+          
+          for (var i = 0; i<value.length;i++){
+            value[i].scanId=i+"7";
+          }
+          CacheStore.set('ScanList', value)
+        })
+
       }
 
   return (
