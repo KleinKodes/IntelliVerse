@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Alert } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
@@ -28,16 +28,22 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
 
   const pickImage = async () => {
     console.log("Penis");
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your photos!");
+      return;
+    }
+    let result = await ImagePicker.launchImageLibraryAsync();
 
     console.log(result);
+   
 
     if (!result.cancelled) {
+      Alert.alert(result.uri);
+    }
+    else{
+      
       setImage(null);
     }
 
