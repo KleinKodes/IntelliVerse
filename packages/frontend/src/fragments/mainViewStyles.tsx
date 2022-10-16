@@ -130,8 +130,8 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     height: "100%",
     width: "100%",
-    minHeight: 200,
-    maxHeight: 300,
+    minHeight: 160,
+    maxHeight: 200,
   },
 
   rowFlex2: {
@@ -324,6 +324,19 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  listColumn: {
+    marginTop: "7%",
+   
+    
+    paddingHorizontal:"4%",
+    width: "100%",
+    height: "100%",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+
   folderListItem: {
     height: "10%",
     minHeight: 100,
@@ -335,6 +348,31 @@ export const styles = StyleSheet.create({
 
     flex: 1,
     flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: "4%",
+    padding: "4%",
+
+    alignContent: "center",
+    alignItems: "center",
+    shadowOffset: {
+      width: 3,
+      height: 3
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.5
+  },
+
+  listItemColumn: {
+    height:"10%",
+    minHeight: 100,
+    maxHeight: 110,
+    width: "100%",
+
+    backgroundColor: "#FFFFFFCC",
+    borderRadius: 10,
+
+    flex: 1,
+    flexDirection: "column",
     justifyContent: "space-evenly",
     marginTop: "4%",
     padding: "4%",
@@ -439,40 +477,69 @@ export const styles = StyleSheet.create({
 
 
   headerContainer:{
-    maxHeight: 300,
+    maxHeight: 250,
     width: "100%",
   },
 
   enemyText:{
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    padding: 10,
-    gap: 10,
-
-    width: 280,
-    height: 60,
+    width:"100%",
+    height:"100%",
+    margin: "2%",
+    justifyContent:"center",
+    alignItems:"flex-end",
+    paddingHorizontal:"10%",
 
     backgroundColor: "rgba(219, 211, 216, 0.6)",
     boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
     borderRadius: 10,
 
-    // /* Inside auto layout */
-
-    // flex: 'none',
-    order: 0,
-    flexGrow: 0,
-    zIndex: 0,
   },
-  playerText:{
+  playerTextContainer:{
     display: 'flex',
+    position:"relative",
+    right:0,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    padding: 10,
-    gap: 10,
+    
 
-    width: 280,
-    height: 60,
+    
+    
+    margin: "2%",
+
+
+    width:"90%",
+    height: "100%",
+    maxHeight:40,
+  },
+  enemyTextContainer:{
+    position:"relative",
+    left:0,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+
+    margin: "2%",
+    
+
+    
+
+
+
+    width:"90%",
+    height: "100%",
+    maxHeight:40,
+  },
+  playerText:{
+    width:"100%",
+    height:"100%",
+    margin: "2%",
+    justifyContent:"center",
+    alignItems:"flex-start",
+    textAlign:'flex-end',
+    paddingHorizontal:"10%",
+
+
+   
 
     backgroundColor: "rgba(216, 180, 160, 0.6)",
     boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
@@ -481,10 +548,30 @@ export const styles = StyleSheet.create({
     // /* Inside auto layout */
 
     // flex: 'none',
-    order: 0,
-    flexGrow: 0,
-    zIndex: 0,
+   
   },
+
+  conversationView:{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 10,
+    gap: 10,
+
+   
+
+    backgroundColor: 'rgba(239, 241, 243, 0.6)',
+    boxShadow: 'background: rgba(239, 241, 243, 0.6)',
+
+  },
+
+  uploadWindow:{
+    display: 'flex',
+      
+
+    backgroundnColor: 'rgba(239, 241, 243, 0.6)',
+    boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
+  }
 
 
 });

@@ -7,10 +7,24 @@ function penis(cow){
     else return styles.playerText;
 }
 
+function penis2(cow){
+  if(cow === 0) return styles.enemyTextContainer;
+  else return styles.playerTextContainer;
+}
+
 export const TextMessage = (props: {message: string, person: number}) =>{
   return (
+  
+
+<View style={penis2(props.person)}>
+    
+
+    
     <View style={penis(props.person)}>
         <Text >{props.message}</Text>
     </View>
+  </View>
+ 
+    
   )
 }
