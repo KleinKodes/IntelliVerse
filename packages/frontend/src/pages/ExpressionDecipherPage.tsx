@@ -5,7 +5,24 @@ import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
 
-export const ExpressionDecipherPage = ({input, meaning}:{input: string, meaning:string}) => {
+export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction}:{input: string, meaning:string, navigation, backFunction:Function}) => {
+
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('tabPress', (e) => {
+          // Prevent default behavior
+          e.preventDefault();
+
+
+      
+          // Do something manually
+          // ...
+          backFunction();
+          console.log("WE GOTTA REVERT");
+        });
+      
+        return unsubscribe;
+      }, [navigation]);
+
   return (
 
 

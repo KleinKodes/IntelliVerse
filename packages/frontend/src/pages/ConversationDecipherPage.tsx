@@ -7,7 +7,22 @@ import { SingleInputForm } from "../fragments/singleInputForm";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 
-export const ConversationDecipherPage = ({input, meaning}:{input: string, meaning:string}) => {
+export const ConversationDecipherPage = ({input, meaning, navigation, backFunction}:{input: string, meaning:string, navigation, backFunction:Function}) => {
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('tabPress', (e) => {
+          // Prevent default behavior
+          e.preventDefault();
+
+
+      
+          // Do something manually
+          // ...
+          backFunction();
+          console.log("WE GOTTA REVERT");
+        });
+      
+        return unsubscribe;
+      }, [navigation]);
   return (
     <View style={styles.flexPage}>
     <Header title={"Seven3"} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, SafeAreaView, FlatList } from 'react-native';
+import { View, SafeAreaView, FlatList, Text } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
@@ -13,6 +13,9 @@ import { ConversationDecipherPage } from "./ConversationDecipherPage";
 
 
 export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
+
+
+    
   //INSERT DB QUERY TO LOAD PAST SCANS FROM DATABASE
 
 
@@ -33,7 +36,7 @@ export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
           style={styles.maxWidthContainer}
             data={scanList}
             initialNumToRender={1} 
-            renderItem={({ item }) => <ScanListItem touchFunction={()=>{pickFunction(item)}} item={item}/>}
+            renderItem={({ item }) => <ScanListItem touchFunction={()=>{console.log("ANTHONY QIN WAS NOT HERE"); console.log(item.scanId);console.log("GOODBYE ANATAWA");pickFunction({scan: item})}} item={item}/>}
             keyExtractor={item => item.scanId}>
           </FlatList>
         </SafeAreaView>
@@ -41,25 +44,44 @@ export const PastScansPage = ({pickFunction}:{pickFunction:Function}) => {
   );
 };
 
-export const FullScanPage = () => {
-    const sampleScan = new Scan("sample2", "sample", "anthony hates me qqq", "this person is sad due to someone else's actions", new Date(), true);
+export const FullScanPage = ({navigation}) => {
+    const sampleScan = new Scan("unset", "sample", "anthony hates me qqq", "this person is sad due to someone else's actions", new Date(), true);
     const scanList = [sampleScan];
     const pastFlag= useRef(true);
     const chosenScan = useRef(sampleScan);
+    const [selectedScan, scanSelector] = useState(sampleScan);
+    const [dummyState, dummyFunc] = useState(true);
+
 
     const [experiment, derivative]=useState({scan:sampleScan, flag:true})
 
     console.log(chosenScan.current.convoBool + "ASAAAA");
     console.log(!chosenScan.current.convoBool + "BANDTONNN");
-    
-   
 
+
+
+    if (selectedScan!= null){
+        console.log("SUS BEHAVIOUR")
+    }else{
+        console.log("AMOGUS SUSSUS")
+    }
+
+    // if (selectedScan == null){
+    //     dummyFunc(!dummyState);
+        
+    // }
+    
     return(
         <View style={styles.maxContainer}>
 
-            {experiment.flag && <PastScansPage pickFunction={({scan}:{scan:Scan}) => {derivative({scan: scan, flag:false});}}/>}
-            {!experiment.flag && experiment.scan.convoBool && <ExpressionDecipherPage input={experiment.scan.input} meaning={experiment.scan.meaning}/>}
-            {!experiment.flag && !experiment.scan.convoBool && <ConversationDecipherPage input={experiment.scan.input} meaning={experiment.scan.meaning}/>}
+            
+
+             {selectedScan != null && selectedScan.scanId == "unset" && <PastScansPage pickFunction={({scan}:{scan:Scan}) => {console.log("I HATE REACT"); console.log(scan.scanId); scanSelector(scan)}}/>}
+            { selectedScan != null && selectedScan.scanId != "unset" && selectedScan.convoBool && <ExpressionDecipherPage backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
+            { selectedScan != null && selectedScan.scanId != "unset" && !selectedScan.convoBool && <ConversationDecipherPage backFunction={()=>scanSelector(sampleScan)} navigation={navigation} input={selectedScan.input} meaning={selectedScan.meaning}/>}
         </View>
     )
+
+
+
 }
