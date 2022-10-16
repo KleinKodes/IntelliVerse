@@ -12,7 +12,7 @@ export async function reqToxicity(input:string):Promise<cohereResponse<classifyR
     console.log(input)
     //@ts-ignore
     const response = await cohere.classify({
-        model:  'c39b514c-c179-4542-8ab8-77e7c5331a05-ft',
+        model:  'cohere-toxicity',
         inputs: [input]
       })
       console.log(`The confidence levels of the labels are ${JSON.stringify(response)}`);
