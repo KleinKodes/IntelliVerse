@@ -25,13 +25,13 @@ const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}) =
 
    
     const {loading, error, data } = useQuery(MESSAGE_SENTIMENT, 
-            { variables: { input: baseSix4}})
+            { variables: { pngString: baseSix4}})
             if (loading){
                 return(<View><Text>Loading...</Text></View>)
             }
-            console.log("ERROR: " + error.name + " " + error.message)
+           // console.log("ERROR: " + error.name + " " + error.message)
             console.log(JSON.stringify(data))
-            meaning2Set(data.reqMessageSentiment)
+            meaning = data.reqMessageSentiment;
     
     
 
@@ -41,7 +41,7 @@ const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}) =
     
 
   return (
-    <View style={styles.flexPage}>
+    <View style={[styles.flexPage, {zIndex:2, backgroundColor:"223843"}]}>
     <Header title={"Seven3"} />
     
         <ScrollView contentContainerStyle={{flexGrow:1}} style={ {width:"100%"}}>
