@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:16.18.0
 
 RUN echo "building backend"
 RUN mkdir -p Seven/packages/backend
