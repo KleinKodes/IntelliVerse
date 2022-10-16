@@ -1,10 +1,11 @@
 import { model, Schema} from 'mongoose'
-import { UserDocument } from '../types'
+import { UserDocument } from '../type'
 
 const userSchema = new Schema(
     {
         email:String,
-        password: String
+        password: String,
+        logged:Boolean
     }
 )
 

@@ -4,18 +4,27 @@ import { Expression } from '../models'
 import {reqSentiment} from '../cohereAPI'
 
 
-async function get_sentiment(input:String): Promise<String>{
+async function get_sentiment(input: string): Promise<String>{
+  
+  const response = await reqSentiment(input)
+  
+  if(response.statusCode != 200){
+    return 'Bad model'
+  }
 
+  const a = response.body.classifications[0].prediction
    
-    return await reqSentiment(input)
+  return a
 }
 
 const resolvers = {
     Query: {
         requestExpressionSent: async(
-            input: String
+            root,
+            args:{input:string},
+            context
           )=>{
-            const sentiment = get_sentiment(input)
+            const sentiment = get_sentiment(args.input)
             return sentiment
           }
     }

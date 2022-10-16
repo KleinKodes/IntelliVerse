@@ -26,8 +26,10 @@
     "eslint": "^8.23.1",
     "esm": "^3.2.25",
     "expo": "^46.0.13",
+    "fs": "^0.0.1-security",
+    "jimp": "^0.16.2",
+    "node-base64-image": "^2.0.4",
     "react-native": "0.69.6",
-    "react-native-document-picker": "^8.1.1",
     "react-native-floating-action": "^1.22.0",
     "react-native-svg": "12.3.0"
   },
