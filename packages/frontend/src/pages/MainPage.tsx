@@ -7,11 +7,35 @@ import { SingleInputForm } from "../fragments/singleInputForm";
 import * as DocumentPicker from "react-native-document-picker"
 import { EnterConversation } from "./EnterConversation";
 import * as ImagePicker from 'expo-image-picker';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { ExpressionDecipherPage } from "./ExpressionDecipherPage";
 
-export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, boxFunction2: Function}) => {
+
+
+
+
+
+
+const MainPage = ({boxFunction1, boxFunction2, submitFunc}:{boxFunction1: Function, boxFunction2: Function, submitFunc:Function}) => {
 
   const [image, setImage] = useState(null);
+  const [singleInput, setSingleInput] = useState("");
+
+
+
+    
+  const submitSingle = ({singleInput}:{singleInput:string}) => {
+
+    console.log("Shipping off \"" + singleInput + "\" to backend");
+
+
+    submitFunc({inp:singleInput});
+    
+  
+      
+    
+   
+  }
   // async function docPicker(){
   //     try{
   //       const res = await DocumentPicker.pick({
@@ -51,21 +75,9 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
 
   };
   
-  const [singleInput, setSingleInput] = useState("");
-  const SINGLE_INPUT = gql`
-    query putSingleInput($input: String!) {
-      reqExpressionSentiment(input: $input)
-  }
-`;
-  const submitSingle = () => {
-    console.log("Shipping off \"" + singleInput + "\" to backend");
-    const { loading, error, data } = useQuery(SINGLE_INPUT, {
-      variables: { input: singleInput },
-    });
-    if (loading) return <Text>Loading...</Text>;
-    Alert.alert(data);
-    return data;
-  }
+
+
+
 
 
   return (
@@ -75,7 +87,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
 
       <Header title={"Seven"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
-      <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle()}} inputUpdateFunc={({text}:{text:string})=>{setSingleInput(text)}}/>
+      <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle({singleInput: singleInput})}} inputUpdateFunc={(text:string)=>{setSingleInput(text)}}/>
     </View>
 
 
@@ -84,11 +96,26 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
 
 export const FullMainPage = ({navigation}) => {
   const [contextFlag, contextSwitch] = useState(true);
+  const [submitted, saySubmitted] = useState(false);
+  const [inputText, typeInput] = useState("");
+
+  if (submitted){
+    console.log("H<<");
+    console.log(inputText);
+    console.log("HAA");
+    return(
+      <ScrollView style={styles.maxContainer} keyboardDismissMode={'none'}>
+
+      <ExpressionDecipherPage input={inputText} meaning={""} navigation={navigation} backFunction={()=>{saySubmitted(false)}} pastFlag={false}/>
+      
+          </ScrollView>
+    )
+  }else
 
   return(
     <ScrollView style={styles.maxContainer} keyboardDismissMode={'none'}>
 
-{contextFlag && <MainPage boxFunction2={() => { contextSwitch(!contextFlag); } } boxFunction1={undefined}/>}
+{contextFlag && <MainPage submitFunc={({inp}:{inp:string})=>{console.log("I JUST CAME TO SAY HELLO");console.log(inp);console.log("GOODBYE THEN");typeInput(inp);saySubmitted(true)}} boxFunction2={() => { contextSwitch(!contextFlag); } } boxFunction1={undefined}/>}
   {!contextFlag && <EnterConversation navigation={navigation} backFunction={()=>{contextSwitch(!contextFlag)}}/>}
 
     </ScrollView>
@@ -96,4 +123,7 @@ export const FullMainPage = ({navigation}) => {
 
 
 }
+
+export default MainPage
+
 

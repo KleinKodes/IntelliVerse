@@ -1,11 +1,18 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
 import { SingleInputForm } from "../fragments/singleInputForm";
+import { gql, useQuery } from "@apollo/client";
 
-export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction}:{input: string, meaning:string, navigation, backFunction:Function}) => {
+export const SINGLE_INPUT = gql`
+query putSingleInput($input: String!) {
+  reqExpressionSentiment(input: $input)
+}
+`;
+
+export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction, pastFlag}:{input: string, meaning:string, navigation, backFunction:Function, pastFlag: Boolean}) => {
 
     React.useEffect(() => {
         const unsubscribe = navigation.addListener('tabPress', (e) => {
@@ -22,6 +29,17 @@ export const ExpressionDecipherPage = ({input, meaning, navigation, backFunction
       
         return unsubscribe;
       }, [navigation]);
+
+      if (!pastFlag){
+
+      const {loading, error, data } = useQuery(SINGLE_INPUT, {
+        variables: { input: input}})
+
+        if (loading) return <Text>Loading...</Text>;
+        console.log(JSON.stringify(data))
+        Alert.alert(data.reqExpressionSentiment);
+        meaning = data.reqExpressionSentiment;
+      }
 
   return (
 
