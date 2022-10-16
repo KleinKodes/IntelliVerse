@@ -45,7 +45,7 @@ async function encodePNG(pngString:String){
 }
 
 
-export async function reqSentimentMessage(pngString:String):Promise<cohereResponse<classifyResponse>>{
+export async function reqToxicityImages(pngString:String):Promise<cohereResponse<classifyResponse>>{
     cohere.init(apiKey);
     await encodePNG(pngString)
     
@@ -53,7 +53,7 @@ export async function reqSentimentMessage(pngString:String):Promise<cohereRespon
     //console.log(input)
     //@ts-ignore
     const response = await cohere.classify({
-        model:  'c39b514c-c179-4542-8ab8-77e7c5331a05-ft',
+        model:  'cohere-toxicity',
         inputs: [input]
       })
       //console.log(`The confidence levels of the labels are ${JSON.stringify(response)}`);

@@ -15,6 +15,7 @@ async function get_sentiment(input: string): Promise<String>{
   const a = response.body.classifications[0].prediction
    
   return a
+  
 }
 
 const resolvers = {
