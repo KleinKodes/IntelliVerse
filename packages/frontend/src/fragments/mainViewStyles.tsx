@@ -563,9 +563,15 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(239, 241, 243, 0.6)',
     boxShadow: 'background: rgba(239, 241, 243, 0.6)',
 
-  }
+  },
 
-  
+  uploadWindow:{
+    display: 'flex',
+      
+
+    backgroundnColor: 'rgba(239, 241, 243, 0.6)',
+    boxShadow: '0px 4px 4px rgba(18, 117, 137, 0.25)',
+  }
 
 
 });
