@@ -74,7 +74,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
     <View style={styles.flexPage}>
 
       <Header title={"Seven"}/>
-      <DoubleDescBox data={["Upload Text Messages", "sGive longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
+      <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
       <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle()}} inputUpdateFunc={setSingleInput}/>
     </View>
 
