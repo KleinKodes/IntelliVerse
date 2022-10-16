@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, Alert, ScrollView } from 'react-native';
+import { TouchableOpacity, View, Text, Alert, ScrollView, Button } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
@@ -76,6 +76,7 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
       <Header title={"Seven"}/>
       <DoubleDescBox data={["Upload Text Messages", "Give longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
       <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle()}} inputUpdateFunc={({text}:{text:string})=>{setSingleInput(text)}}/>
+      <Button title="Submit" onPress={()=>{submitSingle()}}/>
     </View>
 
 
