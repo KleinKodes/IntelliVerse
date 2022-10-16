@@ -5,7 +5,6 @@ import { gql } from 'apollo-server-express'
 export default gql`
   extend type Query{
     findJournal(journalId:String):String
-    reqJournalSentiment(journalId:String):String
     reqSentiment(input:String):String
   }
   extend type Mutation {

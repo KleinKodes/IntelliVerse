@@ -19,7 +19,7 @@ async function get_sentiment(input: string): Promise<String>{
 
 const resolvers = {
     Query: {
-        requestExpressionSent: async(
+      reqExpressionSentiment: async(
             root,
             args:{input:string},
             context

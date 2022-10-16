@@ -16,7 +16,7 @@ async function get_sentiment(pngString: string): Promise<String>{
 
 const resolvers = {
     Query: {
-        requestMessageSent: async(
+      reqMessageSentiment: async(
             root,
             args:{pngString:string},
             context

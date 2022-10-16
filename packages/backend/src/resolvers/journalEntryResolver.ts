@@ -28,7 +28,7 @@ const resolvers = {
             return x
 
         },
-        reqJournalSentiment: async(root, args:{input:string}, context):Promise<String> =>{
+        reqSentiment: async(root, args:{input:string}, context):Promise<String> =>{
             return await get_sentiment(args.input)
         }
     },
