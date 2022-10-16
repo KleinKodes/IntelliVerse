@@ -85,6 +85,8 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
       //@ts-ignore
       setMyB64(result.base64)
       //@ts-ignore
+      setMyUri(result.uri);
+      //@ts-ignore
       console.log(result.base64)
       
     }

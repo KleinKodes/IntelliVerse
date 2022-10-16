@@ -49,7 +49,7 @@ const PhotoDecipherPage = ({uri, meaning, navigation, backFunction, baseSix4}) =
             <View style={styles.inputBoxBoxTall}>
                 <Text style={styles.whiteText2}>Input:</Text>
                 <View style={styles.inputBoxTall}>
-                    <Image source={uri}/>
+                    
                 </View>
             </View>
             <View style={styles.inputBoxBoxTall}>
