@@ -6,23 +6,33 @@ const resolvers = {
     Query: {
         me: async(
             root,
-            args: {username:string},
+            args: {username:String},
+            context
             ):
             Promise<UserDocument | null> =>{
-                return await User.findById(args).exec()
+                return await User.findById(args)
             }
     },
 
     Mutation: {
         signUp: async(
             root,
-            args: {email: string; password:string}
+            args: {email: String, password:String},
+            context
         ): Promise<UserDocument> =>{
 
-            const user = await User.create(args)
             console.log("added to server")
-            return user
-        }
+            return await User.create({email:args.email, password:args.password, logged:false})
+        },
+
+        logIn: async(
+                    root,
+                    args: {email: String, password:String},
+                    context
+                    ): Promise<UserDocument>=>
+                    {
+                        return await User.findOneAndUpdate(args, {logged: true})
+                    }
     }
 }
 

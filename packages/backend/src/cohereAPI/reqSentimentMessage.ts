@@ -1,30 +1,62 @@
 
 import cohere from 'cohere-ai'
-import csvToJson from 'convert-csv-to-json';
 import { classifyRequest, classifyResponse, cohereResponse } from 'cohere-ai/dist/models';
+
+import getTextFromImage from "node-text-from-image";
+import Jimp from "jimp"
+
 
 let apiKey = "eECdZb5nD7QbiEdyTIFxI1fefn56IB7E2Fz8ItHH"
 cohere.init(apiKey);
 
 
-function parse(fileURLToPath:string):{ text: string; label: string; }[] | { text: string; label: string; }[]{
-    const val = csvToJson.fieldDelimiter('\\').getJsonFromCsv(fileURLToPath);
-    //console.log(JSON.stringify(val))
-    return val
- 
+
+
+async function get_text():Promise<String>{
+    const text = await getTextFromImage("./img.png").then(text => {
+        return text
+    }).catch(err => {
+         return 'error'
+    })
+    return text
 }
 
 
+ async function encodePNG(pngString:String):Promise<String>{
+    // Some image data uri
+    
+    // Base64 string
+    // Convert base64 to buffer => <Buffer ff d8 ff db 00 43 00 ...
+    const buffer = Buffer.from(pngString, "base64");
+    Jimp.read(buffer, (err, res) => {
+    if (err){
+        console.log(err)
+    }
+    res.quality(5).write("img.jpg");
+    });
+    console.log('success converting')
+    return get_text()
+    
+}
 
-export async function reqSentimentMessage(input:string): Promise<cohereResponse<classifyResponse>>{
-    const examples = parse("data.csv")
-   
-    console.log(JSON.stringify(examples[0]))
-    console.log('=====================================')
+
+export async function reqSentimentMessage(pngString:String):Promise<cohereResponse<classifyResponse>>{
+    const input = String(encodePNG(pngString))
+    console.log(input)
+    //cohere stuff here
+
     const response = await cohere.classify({
-        inputs: [input],
-        examples: examples
-      });
-      console.log(JSON.stringify(response))
+        preset:'No preset',
+        model: '18271883-c870-4293-a566-1b85505fe712-ft',
+        inputs: [input]
+      })
+      console.log(`The confidence levels of the labels are ${JSON.stringify(response.body.classifications)}`);
       return response
+
 }
+
+
+
+
+
+

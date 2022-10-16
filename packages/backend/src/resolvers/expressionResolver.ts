@@ -20,9 +20,11 @@ async function get_sentiment(input: string): Promise<String>{
 const resolvers = {
     Query: {
         requestExpressionSent: async(
-            input: string
+            root,
+            args:{input:string},
+            context
           )=>{
-            const sentiment = get_sentiment(input)
+            const sentiment = get_sentiment(args.input)
             return sentiment
           }
     }

@@ -6,10 +6,8 @@ export default gql`
   extend type Query{
     reqExpressionSentiment(input:String):String
   }
-  extend type Mutation {
-
-  }
   type Expression {
+    id:String
     userId:String
     input:String
     sentiment:String
