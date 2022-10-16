@@ -13,7 +13,7 @@ export const SingleInputForm = ({prompt, submitFunc, inputUpdateFunc, mode} : {p
             <Text style={styles.whiteText2}>{prompt}</Text>
             <View style={styles.inputBoxBox}>
             
-            <TextInput style={[styles.inputBox, extra]} onChangeText={(text:string) => inputUpdateFunc(text)}></TextInput>
+            <TextInput removeClippedSubviews={false} style={[styles.inputBox, extra]} onChangeText={(text:string) => inputUpdateFunc(text)}></TextInput>
       
             </View>
 

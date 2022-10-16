@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, Alert } from 'react-native';
+import { TouchableOpacity, View, Text, Alert, ScrollView } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
@@ -86,12 +86,12 @@ export const FullMainPage = ({navigation}) => {
   const [contextFlag, contextSwitch] = useState(true);
 
   return(
-    <View style={styles.maxContainer}>
+    <ScrollView style={styles.maxContainer} keyboardDismissMode={'none'}>
 
 {contextFlag && <MainPage boxFunction2={() => { contextSwitch(!contextFlag); } } boxFunction1={undefined}/>}
   {!contextFlag && <EnterConversation navigation={navigation} backFunction={()=>{contextSwitch(!contextFlag)}}/>}
 
-    </View>
+    </ScrollView>
   )
 
 
