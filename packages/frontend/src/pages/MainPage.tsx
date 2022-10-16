@@ -7,6 +7,7 @@ import { SingleInputForm } from "../fragments/singleInputForm";
 import * as DocumentPicker from "react-native-document-picker"
 import { EnterConversation } from "./EnterConversation";
 import * as ImagePicker from 'expo-image-picker';
+import { gql, useQuery } from '@apollo/client';
 
 export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, boxFunction2: Function}) => {
 
@@ -50,6 +51,21 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
 
   };
   
+  const [singleInput, setSingleInput] = useState("");
+  const SINGLE_INPUT = gql`
+    query putSingleInput($input: String!) {
+      reqExpressionSentiment(input: $input)
+  }
+`;
+  const submitSingle = () => {
+    console.log("Shipping off \"" + singleInput + "\" to backend");
+    const { loading, error, data } = useQuery(SINGLE_INPUT, {
+      variables: { input: singleInput },
+    });
+    if (loading) return <Text>Loading...</Text>;
+    Alert.alert(data);
+    return data;
+  }
 
 
   return (
@@ -58,8 +74,8 @@ export const MainPage = ({boxFunction1, boxFunction2}:{boxFunction1: Function, b
     <View style={styles.flexPage}>
 
       <Header title={"Seven"}/>
-      <DoubleDescBox data={["Upload Text Messages", "Give conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
-      <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{console.log("Piss")}} inputUpdateFunc={console.log}/>
+      <DoubleDescBox data={["Upload Text Messages", "sGive longer conversation for context"]} functions={[()=>{pickImage(); console.log("Poonis");}, boxFunction2]}/>
+      <SingleInputForm prompt={"Enter an expression"} submitFunc={()=>{submitSingle()}} inputUpdateFunc={setSingleInput}/>
     </View>
 
 
