@@ -1,6 +1,23 @@
 
 import { JournalEntryDocument } from '../type'
 import { JournalEntry } from '../models'
+import {reqSentiment, reqSentimentMessage} from '../cohereAPI'
+
+
+async function get_sentiment(input: string): Promise<String>{
+  
+    const response = await reqSentiment(input)
+    
+    if(response.statusCode != 200){
+      return 'Bad model'
+    }
+  
+    const a = response.body.classifications[0].prediction
+    console.log(a)
+    return a
+  }
+  
+
 
 const resolvers = {
     Query: {
@@ -11,8 +28,8 @@ const resolvers = {
             return x
 
         },
-        reqJournalSentiment: async(input:String):Promise<String> =>{
-            return 'a'
+        reqJournalSentiment: async(root, args:{input:string}, context):Promise<String> =>{
+            return await get_sentiment(args.input)
         }
     },
 

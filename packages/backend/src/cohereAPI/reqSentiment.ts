@@ -6,26 +6,18 @@ let apiKey = "eECdZb5nD7QbiEdyTIFxI1fefn56IB7E2Fz8ItHH"
 cohere.init(apiKey);
 
 
-function parse(fileURLToPath:string):{ text: string; label: string; }[] | { text: string; label: string; }[]{
-    const val = csvToJson.fieldDelimiter('\\').getJsonFromCsv(fileURLToPath);
-    //console.log(JSON.stringify(val))
-    return val
- 
-}
 
-export async function reqSentiment(input:string): Promise<cohereResponse<classifyResponse>>{
-    const examples = parse("data.csv")
-   
-    console.log(JSON.stringify(examples[0]))
-    console.log('=====================================')
+export async function reqSentiment(input:string):Promise<cohereResponse<classifyResponse>>{
+
+    console.log(input)
+    //@ts-ignore
     const response = await cohere.classify({
-        inputs: [input],
-        examples: examples
-      });
-      console.log(JSON.stringify(response))
-      return response
-}
+        model:  'c39b514c-c179-4542-8ab8-77e7c5331a05-ft',
+        inputs: [input]
+      })
+      //console.log(`The confidence levels of the labels are ${JSON.stringify(response)}`);
+    return response
 
-reqSentiment("this movie was great")
+}
 
 
