@@ -1,4 +1,4 @@
-# Seven
+# IntelliVerse
 
 ## Inspiration
 
