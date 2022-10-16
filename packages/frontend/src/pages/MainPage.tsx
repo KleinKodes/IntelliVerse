@@ -30,23 +30,6 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
   const [myB64, setMyB64] = useState()
 
 
-  async function get_png_string(directory):Promise<String>{
-
-
-    // writing to a sub-directory
-    // after creating a directory called 'photos'
-
-    const strrr = ImgToBase64.getBase64String(directory)
-
-    const result = await ImagePicker.launchImageLibraryAsync({
-  mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  base64: true,
-});
-  
-  
-    
-    return strrr;
-}
     
   const submitSingle = ({singleInput}:{singleInput:string}) => {
 
@@ -110,7 +93,7 @@ const MainPage = ({boxFunction1, boxFunction2, submitFunc, navigation}:{boxFunct
       setImage(null);
     }
     //@ts-ignore
-    imageString = await get_png_string(result.uri);
+
     //@ts-ignore
     
 
