@@ -1,6 +1,9 @@
 # IntelliVerse
 
 ## Inspiration
+Everyone can relate to the scene of staring at messages on your phone and wondering, "why did they say this?" While we originally intended to create an app to help neurodivergent people better understand both others and themselves, we quickly realized that emotional intelligence support is a universally applicable concept. 
+
+After some research, we learned that neurodivergent individuals find it most helpful to have plain positive/negative annotations on sentences in a conversation. We also think this format leaves the most room for all users to reflect and interpret based on the context and their experiences. This way, we hope that our app provides not only guidance, but also gentle mentorship for developing the users' social skills. Playing around with Cohere.ai's sentiment classification demo, we immediately saw that it was the perfect tool for implementing our vision. 
 
 ## What it does
 IntelliVerse offers insight into the emotions of whomever you're texting. Users can enter their conversations either manually or by taking a screenshot. Our app automatically extracts the text from the image, allowing fast and easy access. Then, IntelliVerse presents what it thinks each message conveys about how the other person is feeling. The interface is organized similarly to a texting app, ensuring that the user effortlessly understands the vibe.  
