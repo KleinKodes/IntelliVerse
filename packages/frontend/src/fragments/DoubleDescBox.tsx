@@ -9,16 +9,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export const DoubleDescBox = ({data}: {data:string[]}) => {
+export const DoubleDescBox = ({data, functions}: {data:string[], functions:Function[]}) => {
 
 
     return (
       <View style={styles.rowFlex1}>
   
-        <DescBox text1={data[0]} />
+        <DescBox text1={data[0]} function1={functions[0]} />
   
   
-        <DescBox text1={data[1]} />
+        <DescBox text1={data[1]} function1={functions[1]}/>
       </View>
     );
   };
