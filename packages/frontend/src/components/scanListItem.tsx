@@ -4,7 +4,7 @@ import { styles } from "../fragments/mainViewStyles"
 import { Scan } from './Scan';
 
 
-export const ScanListItem = ({item}:{item:Scan}) => {
+export const ScanListItem = ({item, touchFunction}:{item:Scan, touchFunction:Function}) => {
   
 
 
@@ -13,7 +13,7 @@ export const ScanListItem = ({item}:{item:Scan}) => {
       console.log(item.scanId);
       
       return (
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={() => {touchFunction()}}>
           <View style={styles.flexPage}>
   
         
