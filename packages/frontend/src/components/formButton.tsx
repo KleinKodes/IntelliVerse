@@ -12,7 +12,9 @@ export const FormButton = ({title, buttonFunction, argument}: {title: string, bu
             width: "100%",
             marginTop: 5,
             flexDirection: 'row',
-            maxHeight:120
+            maxHeight:120,
+
+            zIndex: 1,
 
         }]}>
            <TouchableOpacity style = {{
@@ -28,7 +30,8 @@ export const FormButton = ({title, buttonFunction, argument}: {title: string, bu
                 height: "50%",
                 marginTop: "3%",
                 maxHeight: 120,
-                
+
+                zIndex: 2,
                 
                 
            }}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, Alert, ScrollView } from 'react-native';
+import { TouchableOpacity, View, Text, Alert, ScrollView, Button } from 'react-native';
 import { styles } from "../fragments/mainViewStyles";
 import { Header } from "../fragments/header";
 import { DoubleDescBox } from "../fragments/DoubleDescBox";
