@@ -1,4 +1,5 @@
 import fs from 'fs'
+
 import {reqSentimentMessage} from './reqSentimentMessage'
 import { classifyRequest, classifyResponse, cohereResponse } from 'cohere-ai/dist/models';
 
@@ -8,11 +9,13 @@ import { classifyRequest, classifyResponse, cohereResponse } from 'cohere-ai/dis
     // writing to a sub-directory
     // after creating a directory called 'photos'
     var imageAsBase64 = fs.readFileSync('./img.png', 'base64');
+
+    //fs.writeFileSync('./img.txt',imageAsBase64)
     return imageAsBase64
 }
 
 
-async function get_sentiment(pngString: string): Promise<String>{
+async function get_sentiment(pngString: String): Promise<String>{
   
     const response = await reqSentimentMessage(pngString)
     
@@ -29,3 +32,4 @@ async function get_sentiment(pngString: string): Promise<String>{
 const x = String(get_png_string())
 
 console.log(get_sentiment(x))
+process.exit()

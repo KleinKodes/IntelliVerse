@@ -1,3 +1,5 @@
 export * from './train'
 export * from './reqSentiment'
+export * from './reqToxicity'
 export * from './reqSentimentMessage'
+export * from './reqToxicityImages'
